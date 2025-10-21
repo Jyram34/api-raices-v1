@@ -17,55 +17,106 @@
 - [Ejemplos de Uso](#ejemplos-de-uso)
 - [Desarrollo](#desarrollo)
 - [Roadmap](#roadmap)
+
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Raíces es una plataforma tecnológica que busca democratizar en los turismo en los Pueblos Mágicos de México, conectando directamente a viajeros con prestadores de servicios locales (guías, cocineras tradicionales, artesanos, hospedajes) para promover un turismo sostenible, cultural y comunitario.
 
-## Project setup
+**Problema que resuelve:** Los pequeños prestadores de servicios carecen de visibilidad digital, limitando su participación en los beneficios del turismo y contribuyendo a la pérdida de patrimonio cultural intangible.
 
-```bash
-$ npm install
-```
+## Características
 
-## Compile and run the project
+### Fase 1 - MVP
+- **Gestión de prestadores locales** - Registro y perfil de servicios
+- **Catálogo de experiencias** - Rutas, gastronomía, hospedajes
+- **Sistema de usuarios** - Viajeros y anfitriones
+- **Búsqueda y filtros** - Exploración de servicios por categoría
+- **Sistema de favoritos** - Guardado de servicios interesantes
 
-```bash
-# development
-$ npm run start
+### Fases Futuras
+- Sistema de reservas y pagos integrados
+- Itinerarios personalizados
+- Reseñas y valoraciones
+- Agenda de eventos culturales
+- Marketplace de productos locales
 
-# watch mode
-$ npm run start:dev
+## Tecnologías
 
-# production mode
-$ npm run start:prod
-```
+-**Framework:** NestJS 10+
+-**Base de Datos:** PostgreSQL + Prisma
+-**Autenticacion:** JWT + Passport
+-**Geolocalización:** Google Maps API
+-**Archivos:** Cloudinary/Multer
+-**Documentación:** Swagger/OpenAPI
+-**Testing:** Jest + Supertest
+-**Deploy:** Docker + AWS/Azure
 
-## Run tests
 
-```bash
-# unit tests
-$ npm run test
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+## Instalación
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+# Clonar el repositorio
+git clone https://github.com/raices-turismo/api-raices.git
+cd api-raices
+
+# Instalar dependencias
+npm install
+
+# Configurar variables de entorno
+cp .env.example .env
+
+# Ejecutar en desarrollo
+npm run start:dev
+
+# Ejecutar tests
+npm run test
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+## 📁 Estructura del Proyecto
 
+```
+src/
+├── interfaces/              # Gestión de usuarios (viajeros/anfitriones)
+├── middlewares/               # Prestadores de servicios locales
+├── modules/                 # Servicios turísticos (experiencias, rutas)
+├── services/              # Categorías de servicios
+├── utils/               # Gestión de Pueblos Mágicos y ubicaciones
+├── common/                  # Utilidades compartidas
+│   ├── decorators/          # Decoradores personalizados
+│   ├── guards/              # Guards de autenticación
+│   ├── interfaces/          # Interfaces TypeScript
+│   └── pipes/               # Pipes de validación
+└── config/                  # Configuraciones
+```
+
+## Endpoints Principales
+
+### Autenticación
+
+```
+POST /auth/register            # Registro de usuarios
+POST /auth/login               # Login
+POST /auth/refresh             # Refresh token
+```
+
+### Prestadores de Servicios
+```
+GET  /providers                # Listar prestadores
+POST /providers                # Crear perfil del prestador
+GET  /providers/:id            # Obtener prestador especifico
+PUT  /providers/:id            # Actualizar perfil
+GET  /providers/:id/services   #Servicios de un prestador
+```
+
+### Prestadores de Servicios
+```
+GET  /services                 # Listar prestadores
+GET  /services/search          # Crear perfil del prestador
+POST /services                 # Crear servicio (prestadores)
+PUT  /providers/:id            # Actualizar perfil
+GET  /providers/:id/services   #Servicios de un prestador
+```
 ## Resources
 
 Check out a few resources that may come in handy when working with NestJS:
