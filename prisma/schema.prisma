@@ -13,12 +13,100 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
+// ============================
+// USER AND PROFILES MODELS
+// ============================
+
 model User {
   id Int @id @default(autoincrement())
-  firstName String?
-  lastName String?
+  // Personal Information
+  firstName String
+  secondName String?
+  paternalSurname String
+  maternalSurname String
+  dateOfBirth DateTime
+
+  // Contact Information
   email String @unique
-  password String 
+  phone String @unique
+  password_hash String 
+
+  // Additional Information
+  avatarUrl String?
+
+  addressId Int
+  roleId Int 
+
+  // Relations
+  role role @relation(fields: [roleId], references: [id])
+  travelerProfile TravelerProfile?
+
+  // Timestamps
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model TravelerProfile {
+  id Int @id @default(autoincrement())
+  language String
+  preferences String?
+
+  // Relations
+  userId Int @unique
+  user User @relation(fields: [userId], references: [id])
+}
+
+model providerProfile {
+  id Int @id @default(autoincrement())
+
+  bussinessName String
+  description String?
+  websiteUrl String?
+  addressId Int
+  lat Float?
+  lng Float?
+  verified Boolean @default(false)
+
+}
+
+// ============================
+// ROlE AND PERMISSIONS MODELS
+// ============================
+
+model role {
+  id Int @id @default(autoincrement())
+  name String @unique
+
+  //Relations
+  users User[]
+  rolePermissions rolePermission[]
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+}
+
+model rolePermission {
+  id Int @id @default(autoincrement())
+  roleId Int 
+  permissionId Int
+
+  // Relations
+  role role @relation(fields: [roleId], references: [id])
+  permission permission @relation(fields: [permissionId], references: [id])
+
+  @@unique([roleId, permissionId])
+}
+
+model permission {
+  id Int @id @default(autoincrement())
+  name String @unique
+
+  // Relations
+  rolePermissions rolePermission[]
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
 }
