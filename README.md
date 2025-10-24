@@ -20,7 +20,7 @@
 
 ## Description
 
-Raíces es una plataforma tecnológica que busca democratizar en los turismo en los Pueblos Mágicos de México, conectando directamente a viajeros con prestadores de servicios locales (guías, cocineras tradicionales, artesanos, hospedajes) para promover un turismo sostenible, cultural y comunitario.
+Raíces es una plataforma tecnológica que busca democratizar el turismo en los Pueblos Mágicos de México, conectando directamente a viajeros con prestadores de servicios locales (guías, cocineras tradicionales, artesanos, hospedajes) para promover un turismo sostenible, cultural y comunitario.
 
 **Problema que resuelve:** Los pequeños prestadores de servicios carecen de visibilidad digital, limitando su participación en los beneficios del turismo y contribuyendo a la pérdida de patrimonio cultural intangible.
 
@@ -77,17 +77,23 @@ npm run test
 
 ```
 src/
-├── interfaces/              # Gestión de usuarios (viajeros/anfitriones)
-├── middlewares/               # Prestadores de servicios locales
-├── modules/                 # Servicios turísticos (experiencias, rutas)
-├── services/              # Categorías de servicios
-├── utils/               # Gestión de Pueblos Mágicos y ubicaciones
-├── common/                  # Utilidades compartidas
-│   ├── decorators/          # Decoradores personalizados
-│   ├── guards/              # Guards de autenticación
-│   ├── interfaces/          # Interfaces TypeScript
-│   └── pipes/               # Pipes de validación
-└── config/                  # Configuraciones
+├── prisma/
+|   ├── schema.prisma
+├── middlewares/              # Prestadores de servicios locales
+├── modules/                  # Servicios turísticos (experiencias, rutas
+│   ├── users/                # Decoradores personalizados
+|   │   ├── domain/           # Guards de autenticación
+|   │   ├── application/      # Interfaces TypeScript
+|   │   ├── infrastructure/   # Guards de autenticación
+|   │   └── presentation/     # Pipes de validación
+├── services/                 # Categorías de servicios
+├── utils/                    # Gestión de Pueblos Mágicos y ubicaciones
+├── common/                   # Utilidades compartidas
+│   ├── decorators/           # Decoradores personalizados
+│   ├── guards/               # Guards de autenticación
+│   ├── interfaces/           # Interfaces TypeScript
+│   └── pipes/                # Pipes de validación
+└── config/                   # Configuraciones
 ```
 
 ## Endpoints Principales

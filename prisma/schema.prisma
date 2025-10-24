@@ -41,6 +41,7 @@ model User {
   // Relations
   role role @relation(fields: [roleId], references: [id])
   travelerProfile TravelerProfile?
+  providerProfile providerProfile?
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -67,6 +68,9 @@ model providerProfile {
   lat Float?
   lng Float?
   verified Boolean @default(false)
+
+  userId Int @unique
+  user User @relation(fields: [userId], references: [id])
 
 }
 
