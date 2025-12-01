@@ -18,7 +18,7 @@
 - [Desarrollo](#desarrollo)
 - [Roadmap](#roadmap)
 
-## Description
+## Descripcion
 
 Raíces es una plataforma tecnológica que busca democratizar el turismo en los Pueblos Mágicos de México, conectando directamente a viajeros con prestadores de servicios locales (guías, cocineras tradicionales, artesanos, hospedajes) para promover un turismo sostenible, cultural y comunitario.
 
