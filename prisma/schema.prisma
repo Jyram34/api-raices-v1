@@ -10,7 +10,6 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 
@@ -51,7 +50,7 @@ model User {
 model TravelerProfile {
   id Int @id @default(autoincrement())
   language String
-  preferences String?
+  preferences Json?
 
   // Relations
   userId Int @unique
@@ -73,6 +72,12 @@ model providerProfile {
   user User @relation(fields: [userId], references: [id])
 
 }
+// ============================
+// ROlE AND PERMISSIONS MODELS
+// ============================
+
+
+
 
 // ============================
 // ROlE AND PERMISSIONS MODELS
